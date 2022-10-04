@@ -1,7 +1,7 @@
 """
 Directory class
 Name: name of directory
-Parent: name of parent directory
+Parent: parent directory object
 """
 from importlib.resources import path
 
