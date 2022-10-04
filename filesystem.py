@@ -76,13 +76,13 @@ if __name__ == "__main__":
             if len(cmd) < 2:
                 print("Please specify a valid directory name!")
             else:
-                if cmd[1] == "..":
+                if cmd[1] == ".." and cdir.parent != None:
                     cdir = cdir.parent
                 else:
                     for d in cdir.dirs:
-                        print("Changing to", d.name, "...")
                         if d.name == cmd[1]:
                             cdir = d
+                            print("Changing to", d.name, "...")
                             continue
                         print("Invalid directory!")
         else:
