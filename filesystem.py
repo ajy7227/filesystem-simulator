@@ -3,12 +3,16 @@ Directory class
 Name: name of directory
 Parent: name of parent directory
 """
+from importlib.resources import path
+
+
 class Directory:
     def __init__(self, name, parent):
         self.name = name
         self.parent = parent
         self.files = []
         self.dirs = []
+        self.path = [name]
     
     # Creates a new file and adds it to files list
     def touch(self, name):
@@ -16,19 +20,25 @@ class Directory:
     
     # Creates a new directory and adds it to directory list
     def mkdir(self, name):
-        self.dirs.append(Directory(name, self))
+        new_dir = Directory(name, self)
+        new_dir.path = self.path + new_dir.path
+        self.dirs.append(new_dir)
     
     # Lists all contents of directory
     def ls(self):
         if len(self.files) == 0 and len(self.dirs) == 0:
             print("Empty! Use touch/mkdir to add contents.")
         else:
+            fnames = []
+            dnames = []
             if len(self.files) != 0:
                 for f in self.files:
-                    print(f.name)
+                    fnames.append(f.name)
+                print("Files:", *fnames)
             if len(self.dirs) != 0:
                 for d in self.dirs:
-                    print(d.name)
+                    dnames.append(d.name)
+                print("Directories:", *dnames)
 
 """
 File Class
@@ -42,12 +52,12 @@ class File:
 if __name__ == "__main__":
 
     # Set current root directory
-    cdir = Directory("/", None)
+    cdir = Directory("root", None)
 
     # Continuously prompt for user input until receive "exit"
     cmd = ""
     while True:
-        cmd = input("Enter command: ")
+        cmd = input('/'.join(str(x) for x in cdir.path) + " > ")
         if cmd.lower() == "exit":
             print("Exiting...")
             break
@@ -72,11 +82,11 @@ if __name__ == "__main__":
                     cdir = cdir.parent
                 else:
                     for d in cdir.dirs:
-                        print(d.name)
+                        print("Changing to", d.name, "...")
                         if d.name == cmd[1]:
                             cdir = d
                             continue
-                        print("Directory not found!")
+                        print("Invalid directory!")
 
         else:
             print("Enter one of the following options:\nls\nmkdir\ncd\ntouch\nType 'exit' to quit")
