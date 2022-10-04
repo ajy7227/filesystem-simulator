@@ -3,8 +3,6 @@ Directory class
 Name: name of directory
 Parent: parent directory object
 """
-from importlib.resources import path
-
 
 class Directory:
     def __init__(self, name, parent):
@@ -87,7 +85,6 @@ if __name__ == "__main__":
                             cdir = d
                             continue
                         print("Invalid directory!")
-
         else:
             print("Enter one of the following options:\nls\nmkdir\ncd\ntouch\nType 'exit' to quit")
     
