@@ -1,3 +1,8 @@
+"""
+Directory class
+Name: name of directory
+Parent: name of parent directory
+"""
 class Directory:
     def __init__(self, name, parent):
         self.name = name
@@ -5,15 +10,15 @@ class Directory:
         self.files = []
         self.dirs = []
     
-    #@classmethod
+    # Creates a new file and adds it to files list
     def touch(self, name):
         self.files.append(File(name))
     
-    #@classmethod
+    # Creates a new directory and adds it to directory list
     def mkdir(self, name):
         self.dirs.append(Directory(name, self))
     
-    #ls@classmethod
+    # Lists all contents of directory
     def ls(self):
         if len(self.files) == 0 and len(self.dirs) == 0:
             print("Empty! Use touch/mkdir to add contents.")
@@ -25,15 +30,21 @@ class Directory:
                 for d in self.dirs:
                     print(d.name)
 
-
+"""
+File Class
+Name: name of file
+There are currently no contents in these files
+"""
 class File:
     def __init__(self, name):
         self.name = name
 
 if __name__ == "__main__":
 
+    # Set current root directory
     cdir = Directory("/", None)
 
+    # Continuously prompt for user input until receive "exit"
     cmd = ""
     while True:
         cmd = input("Enter command: ")
