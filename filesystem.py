@@ -68,12 +68,15 @@ if __name__ == "__main__":
             if len(cmd) < 2:
                 print("Please specify a valid directory name!")
             else:
-                for d in cdir.dirs:
-                    print(d.name)
-                    if d.name == cmd[1]:
-                        cdir = d
-                        continue
-                    print("Directory not found!")
+                if cmd[1] == "..":
+                    cdir = cdir.parent
+                else:
+                    for d in cdir.dirs:
+                        print(d.name)
+                        if d.name == cmd[1]:
+                            cdir = d
+                            continue
+                        print("Directory not found!")
 
         else:
             print("Enter one of the following options:\nls\nmkdir\ncd\ntouch\nType 'exit' to quit")
