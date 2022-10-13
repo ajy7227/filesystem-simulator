@@ -1,11 +1,13 @@
 # filesystem-simulator
 
 ## Commands:
-### touch < file name >
+### Create new file
+Usage: `touch [filename]`
 Creates a new file with the specified name. File does not contain any contents.
-### mkdir < directory name >
+### Create new directory
+Usage: `mkdir [directory-name]`
 Creates a new directory with the specified name.
-### ls
-Lists contents of current directory
-### cd < .. | directory name >
-Changes to previous directory | another directory within the current directory.
+### List files of current directory
+Usage: `ls`
+### Change directories
+Usage: `cd [.. | directory-name]`
