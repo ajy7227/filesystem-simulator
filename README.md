@@ -1,5 +1,7 @@
 # filesystem-simulator
 
+`py filesystem.py`
+
 ## Commands:
 ### Create new file
 Usage: `touch [filename]`
